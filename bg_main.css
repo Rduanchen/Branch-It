@@ -1,28 +1,36 @@
+
+/* 背景顏色 */
 body{
-    background-color: #202020;
+    background-color: #202020; 
     /* background-image: linear-gradient(to right, #caf0f8, #00b4d8); */
 }
+/* 字體顏色 */
 .self-text{
     color: #fff;
 }
+/* 個人介紹內容行具 */
 .bio{
     line-height:10px
 }
 
+/* 按鈕顏色 */
 .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
     background-color: #fca311 !important;
     outline-color: #fca311 !important;;
     border: none;
 }
 
+/* 社群圖標、按鈕文字顏色 */
 a{
     color: #fff;
 }
 
+/* 商標文字顏色 */
 footer{
     color: #fff;
 }
 
+/* 水平線顏色 */
 hr{
     background-color: #fca311;
 }
