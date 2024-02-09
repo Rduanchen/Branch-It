@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV to Buttons and Links</title>
+    <link rel="icon" href="./git-branch.svg" type="image/x-icon">
+    <link rel="stylesheet" href="./bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="./bg_main.css">
+</head>
+<body>
+<div class="p-3"></div>
+<div id="app" class="container">
+    <div id="csvButtons" class="p-3">
+        <br>
+        <br>
+        <a href="https://github.com/Rduanchen"><img v-if="image_exist" src="./bio.JPG" alt="bio_picture" class="image-fluid"></a>
+        <br>
+        <br>
+        <!-- Title -->
+        <h2 class="self-text" >{{title}}</h2>
+        <p class="self-text">{{word}}</p>
+        <!-- Profile Info -->
+        <div v-if="this.moreinfo" class="moreinfo" v-for="item in info_item">
+            <p class="self-text bio">{{item[0]}}</p>
+        </div>
+        <!-- media info -->
+        <div class="d-flex justify-content-evenly">
+            <a v-if="facebook" v-bind:href="facebook"><i class="bi bi-facebook"></i></a>
+            <a v-if="instagram" v-bind:href="instagram"><i class="bi bi-instagram"></i></a>
+            <a v-if="youtube" v-bind:href="youtube"><i class="bi bi-youtube"></i></a>
+            <a v-if="github" v-bind:href="github"><i class="bi bi-github"></i></a>
+            <a v-if="site" v-bind:href="site"><i class="bi bi-globe"></i></a>
+            <a v-if="linkdin" v-bind:href="linkdin"><i class="bi bi-linkedin"></i></a>
+            <a v-if="twitter" v-bind:href="twitter"><i class="bi bi-twitter"></i></a>
+        </div>
+        <hr>
+        <!-- Buttons -->
+        <div v-for="item in csvData">
+            <a v-bind:href="item[1]" target="_blank" class="btn btn-primary d-grid gap-1" role="button">{{item[0]}}</a>
+            <br>
+        </div>
+        <!-- footer info -->
+        <footer>
+            <img src="./Branch It.png" style="width: 5rem;">
+        <p style="font-size: 0.5rem;">Powered by Rduan, more infomation can be found in <a href="https://github.com/Rduanchen">my github</a></p>
+        </footer>
+        
+    </div>
+</div>
+</body>
+<script src="./vue.js"></script>
+<script>
+const app = Vue.createApp({
+    data() {
+        return {
+            csvData: [],
+            word:"",
+            word_provided: false,
+            title: "",
+            temp:"",
+            instagram: false,
+            facebook: false,
+            linkdin: false,
+            twitter: false,
+            youtube: false,
+            github: false,
+            site: false,
+            media:[],
+            moreinfo:true,
+            info_item:[]
+        };
+    },
+    created() {
+    var imageUrl = './bio.JPG';
+    this.checkImageExists(imageUrl, (exists) => {
+            if (exists) {
+                this.image_exist = true;
+                console.log(this.image_exist);
+            } else {
+                this.image_exist = false;
+            }
+        });
+    },
+    mounted() {
+        console.log("Now you are using brach it! Powered by Rduan. more information can be found in my github:) .Enjoy it");
+        console.log("https://github.com/Rduanchen")
+        this.fetchCSV('index.csv', this.createButtonsAndLinks);
+        this.fetchCSV2('userdata.csv', this.createButtonsAndLinks);
+        this.fetchCSV3('social_media.csv', this.createButtonsAndLinks);
+        console.log(this.info_item);
+    },
+    methods: {
+        // Fetch the CSV file and call the callback function
+        fetchCSV(url, callback) {
+            console.log("fetchCSV");
+            fetch(url)
+                .then(response => response.text())
+                .then(text => {
+                    const data = [];
+                    const rows = text.trim().split('\n');
+                    rows.forEach(row => {
+                        const columns = row.split(',');
+                        data.push(columns);
+                    });
+                    this.csvData = data;
+                    callback(data);
+                })
+                .catch(error => console.error('Error fetching CSV:', error));
+        },
+        fetchCSV2(url, callback) {
+            fetch(url)
+                .then(response => response.text())
+                .then(text => {
+                    const data = [];
+                    const rows = text.trim().split('\n');
+                    rows.forEach(row => {
+                        const columns = row.split(',');
+                        data.push(columns);
+                    });
+                    this.title = data[0][0];
+                    document.title = data[0][0];
+                    try {
+                        this.word = data[0][1];
+                        this.word_provided = true;
+                    } catch (error) {
+                        
+                    }
+                    this.info_item=data.slice(1);
+                    
+                    callback(data);
+                })
+                .catch(error => console.error('Error fetching CSV:', error));
+        },
+        checkImageExists(imageSrc, callback) {
+            var img = new Image();
+            img.onload = function() {
+                callback(true);
+            };
+            img.onerror = function() {
+                callback(false);
+            };
+            img.src = imageSrc;
+        },
+        fetchCSV3(url, callback) {
+            fetch(url)
+                .then(response => response.text())
+                .then(text => {
+                    const data = [];
+                    const rows = text.trim().split('\n');
+                    rows.forEach(row => {
+                        const columns = row.split(',');
+                        data.push(columns);
+                    });
+                    this.media = data;
+                    console.log(this.media);
+                    //facebook
+                    try {
+                        this.facebook = data[1][0];
+                        // console.log(this.temp);
+                    } catch (error) {
+                        
+                    }
+
+                    //instagram
+                    try {
+                        this.instagram = data[1][1];
+                    } catch (error) {
+                        
+                    }
+                    
+                    //youtube
+                    try {
+                        this.youtube = data[1][2];
+                    } catch (error) {
+                        
+                    }
+
+                    //github
+                    try {
+                        this.github = data[1][3];
+                    } catch (error) {
+                        
+                    }
+
+                    //site
+                    try {
+                        this.site = data[1] [4];
+                    } catch (error) {
+                        
+                    }
+
+                    //linkdin
+                    try {
+                        this.linkdin = data[1][5];
+                    } catch (error) {
+                        
+                    }
+
+                    //twitter
+                    try {
+                        this.twitter = data[1][6];
+                    } catch (error) {
+                        
+                    }
+                    callback(data);
+                })
+                .catch(error => console.error('Error fetching CSV:', error));
+        },
+        // read txt file
+        createButtonsAndLinks(data) {
+            // No need to manipulate the DOM directly
+            // Vue will handle rendering the buttons and links
+        },
+    },
+});
+
+app.mount('#app');
+</script>
+<style>
+#app {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* 設置高度為視窗的高度，讓內容垂直置中 */
+}
+
+#csvButtons {
+    /* margin: 2rem; */
+    text-align: center; /* 水平置中 */
+}
+img {
+    width: 18rem;
+    /* Set individual radius for top and bottom corners */
+    border-radius: 20px;
+}
+
+</style>
+</html>

@@ -1,0 +1,24 @@
+body{
+    background-color: #202020;
+    /* background-image: linear-gradient(to right, #caf0f8, #00b4d8); */
+}
+.self-text{
+    color: #fff;
+}
+.bio{
+    line-height:10px
+}
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    background-color: #fca311 !important;
+    outline-color: #fca311 !important;;
+    border: none;
+}
+
+a{
+    color: #fff;
+}
+
+footer{
+    color: #fff;
+}
