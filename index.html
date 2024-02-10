@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="./Library/bootstrap.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="./bg_main.css">
+    <script src="./Library/vue.js"></script>
+    <script src="./Library/qrcode.min.js"></script>
     <script src="./Library/bootstrap.js"></script>
 </head>
 <body>
@@ -53,6 +55,7 @@
             <div class="modal-content">
                 <div class="modal-body d-flex justify-content-center">
                     <div id="qrcode"></div>
+                    <img src="./Demo_pic/Branch It.png" alt="">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary w-100" data-bs-dismiss="modal">關閉</button>
@@ -60,17 +63,19 @@
             </div>
             </div>
         </div>
+        <!-- <div class="card" style="height: 100px;">
+            <div id="qrcode"></div>
+        </div> -->
         <!-- footer info -->
         <footer class="mt-2">
-            <img src="./Branch It.png" style="width: 5rem;">
+            <img src="./Demo_pic/Branch It.png" style="width: 5rem;">
         <p style="font-size: 0.5rem;">Powered by Rduan, more infomation can be found in <a href="https://github.com/Rduanchen">my github</a></p>
         </footer>
         
     </div>
 </div>
 </body>
-<script src="./Library/vue.js"></script>
-<script src="./Library/qrcode.min.js"></script>
+
 <script type="text/javascript">
     // new QRCode(document.getElementById("qrcode"), location.href);
     
