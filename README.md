@@ -8,9 +8,15 @@
 * 具有響應式設計，手機以及電腦皆可以使用
 * 不需要具有程式基礎
 
+## ToDo Warnning:
+* 此程式在手機的「QRcode」分享尚未完成，因此僅電腦版可以使用。
+
+## 取得Branch It
+[下載連結](https://github.com/Rduanchen/branch-it/blob/main/branch-it.zip)
+![alt text](./Demo_pic/image1.png)
+
 ### [網站Demo](https://rduanchen.github.io/branch-it/)
 ![alt text](./Demo_pic/image.png)
-
 
 # 如何自定義網站內容
 > 下面這個章節將教大家如何透過CSV 檔案，來編輯站的內容
