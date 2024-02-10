@@ -12,7 +12,9 @@
 * 此程式在手機的「QRcode」分享尚未完成，因此僅電腦版可以使用。
 
 ## 取得Branch It
-[下載連結](https://github.com/Rduanchen/branch-it/blob/main/branch-it.zip)
+您可以直接下載本專案所付的zip
+[下載連結1](https://rduansharingpoint.site/branch-it/branch-it.zip)
+[下載連結2](https://github.com/Rduanchen/branch-it/blob/main/branch-it.zip)
 ![alt text](./Demo_pic/image1.png)
 
 ### [網站Demo](https://rduanchen.github.io/branch-it/)
@@ -104,3 +106,32 @@ hr{
 2. 上傳檔案
 3. 部屬Github Page
 
+
+
+# 官方樣式列表:
+亮藍色版本
+```css
+body{
+    background-color: #f1faee;
+    background-image: linear-gradient(to right, #f1faee, #a8dadc);
+}
+.self-text{
+    color: #1d3557;
+}
+.bio{
+    line-height:10px
+}
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    background-color: #457b9d !important;
+    border: none;
+}
+
+a{
+    color: #e63946;
+}
+
+hr{
+    background-color: #e63946;
+}
+```
