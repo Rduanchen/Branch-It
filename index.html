@@ -21,7 +21,7 @@
     <div id="csvButtons" class="p-3">
         <!-- Title -->
         <h2 class="self-text" >{{title}}</h2>
-        <p class="self-text">{{word}}</p>
+        <p class="self-text slogan">{{word}}</p>
         <!-- Profile Info -->
         <div v-if="this.moreinfo" class="moreinfo" v-for="item in info_item">
             <p class="self-text bio">{{item[0]}}</p>
@@ -49,13 +49,12 @@
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
             使用QRcode分享我branch
         </button>
-        
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body d-flex justify-content-center">
-                    <div id="qrcode"></div>
+                    <div ref="qrcode"></div>
                     <img src="./Library/Branch It.png" alt="">
                 </div>
                 <div class="modal-footer">
@@ -70,7 +69,7 @@
         <!-- footer info -->
         <footer class="mt-2">
             <img src="./Library/Branch It.png" style="width: 5rem;">
-        <p style="font-size: 0.5rem;">Powered by Rduan, more infomation can be found in <a href="https://github.com/Rduanchen">my github</a></p>
+        <p style="font-size: 0.5rem;">Powered by Rduan, more infomation can be found in <a href="https://github.com/Rduanchen">github</a></p>
         </footer>
         
     </div>
@@ -80,14 +79,7 @@
 <script type="text/javascript">
     // new QRCode(document.getElementById("qrcode"), location.href);
     
-    var qrcode = new QRCode("qrcode", {
-        text: location.href,
-        width: 128,
-        height: 128,
-        colorDark : "#000000",
-        colorLight : "#ffffff",
-        correctLevel : QRCode.CorrectLevel.H
-    });
+
     
 </script>
 <script>
@@ -129,6 +121,14 @@ const app = Vue.createApp({
         this.fetchCSV2('userdata.csv', this.createButtonsAndLinks);
         this.fetchCSV3('social_media.csv', this.createButtonsAndLinks);
         console.log(this.info_item);
+        var qrcode = new QRCode(this.$refs.qrcode, {
+            text: location.href,
+            width: 128,
+            height: 128,
+            colorDark : "#000000",
+            colorLight : "#ffffff",
+            correctLevel : QRCode.CorrectLevel.H
+        });
     },
     methods: {
         // Fetch the CSV file and call the callback function
@@ -267,15 +267,24 @@ img {
     /* Set individual radius for top and bottom corners */
     border-radius: 20px;
 }
-
-#qrcode > img {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 0px;
-    height:10rem;
-    width: 10rem;
+@media screen and (min-width: 768px) {
+    .modal-content img {
+        width: 10rem;
+        border-radius: 0px;
+    }    
 }
-
+@media screen and (max-width: 768px) {
+    .modal-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-self: center;
+    }
+    .modal-content canvas {
+        grid-column: 1;
+        width: 50%;
+    }    
+    
+}
 </style>
 </html>
