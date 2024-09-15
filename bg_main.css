@@ -4,13 +4,18 @@ body{
     background-color: #202020; 
     /* background-image: linear-gradient(to right, #caf0f8, #00b4d8); */
 }
+
+.slogan {
+    font-weight: 800;
+}
+
 /* 字體顏色 */
 .self-text{
     color: #fff;
 }
 /* 個人介紹內容行具 */
 .bio{
-    line-height:10px
+    margin: 0;
 }
 
 /* 按鈕顏色 */
